@@ -12,28 +12,36 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.reminder.ui.theme.ReminderTheme
+import com.example.reminder.data.Task
+import androidx.compose.foundation.layout.Column
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ReminderTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                val task = Task(
+                    title = "Zapłacić rachunki",
+                    startTime = System.currentTimeMillis(),
+                    intervalMinutes = 60
+                )
+                Column(
+                    modifier = Modifier.padding(innerPadding)
+                ) {
+                    Text(text = "Reminder – MVP")
+                    Text(text = task.title)
                 }
             }
         }
     }
 }
 
+
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "Reminder - MVP",
         modifier = modifier
     )
 }
